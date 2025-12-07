@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Pengurusan Sesi</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #0054A6;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0054A6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen">
+
+    <div class="container mx-auto px-4 py-12 max-w-5xl">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Admin Dashboard</h1>
+                <p class="text-gray-500 mt-1">Pengurusan Status Sesi Pendaftaran Konvensyen FAMA</p>
+            </div>
+            <div class="flex gap-3">
+                <a href="/" class="px-5 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition font-medium shadow-sm">
+                    <i class="fas fa-home mr-2"></i> Ke Halaman Utama
+                </a>
+                <button onclick="fetchSessions()" class="px-5 py-2.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition font-medium shadow-lg shadow-blue-500/30">
+                    <i class="fas fa-sync-alt mr-2"></i> Muat Semula
+                </button>
+            </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-gray-50 text-gray-600 uppercase text-xs font-bold tracking-wider border-b border-gray-100">
+                        <tr>
+                            <th class="p-5 w-20 text-center">ID</th>
+                            <th class="p-5 w-40">Hari</th>
+                            <th class="p-5">Nama Sesi</th>
+                            <th class="p-5 text-center w-32">Status</th>
+                            <th class="p-5 text-center w-32">Tindakan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sessionTableBody" class="divide-y divide-gray-100 text-sm">
+                        <!-- Rows will be populated here by JS -->
+                        <tr>
+                            <td colspan="5" class="p-12 text-center text-gray-400">
+                                <div class="flex flex-col items-center justify-center">
+                                    <i class="fas fa-circle-notch fa-spin text-3xl mb-3 text-blue-500"></i>
+                                    <span>Sedang memuatkan data sesi...</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="mt-6 text-center text-gray-400 text-xs">
+            &copy; 2026 Lembaga Pemasaran Pertanian Persekutuan (FAMA)
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-8 right-8 bg-gray-900 text-white px-6 py-4 rounded-xl shadow-2xl transform translate-y-32 transition-transform duration-500 flex items-center gap-4 z-50 border border-gray-700">
+        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center shrink-0">
+            <i class="fas fa-check text-white text-sm"></i>
+        </div>
+        <div>
+            <h4 class="font-bold text-sm">Berjaya Dikemaskini</h4>
+            <span id="toastMessage" class="text-xs text-gray-300">Status sesi telah disimpan.</span>
+        </div>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        const supabaseUrl = 'https://dauegzprzhawsivykuaq.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhdWVnenByemhhd3NpdnlrdWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5OTE2NzUsImV4cCI6MjA3OTU2NzY3NX0.PwQp4Jzk09bxgQKFPOAf00t7XAsP4f08elxAb8NV6Pk';
+        
+        // Initialize Supabase
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // --- CORE FUNCTIONS ---
+
+        // 1. Fetch Data
+        async function fetchSessions() {
+            const tbody = document.getElementById('sessionTableBody');
+            
+            // Show loading if needed (optional, purely for UX on manual refresh)
+            // tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-400"><i class="fas fa-spinner fa-spin mr-2"></i> Mengemaskini...</td></tr>`;
+
+            const { data, error } = await supabase
+                .from('sessions')
+                .select('*')
+                .order('id', { ascending: true });
+
+            if (error) {
+                console.error('Error fetching sessions:', error);
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="p-8 text-center text-red-500">
+                            <i class="fas fa-exclamation-triangle mr-2"></i> Gagal memuat turun data: ${error.message}
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            renderTable(data);
+        }
+
+        // 2. Render Table
+        function renderTable(sessions) {
+            const tbody = document.getElementById('sessionTableBody');
+            tbody.innerHTML = '';
+
+            if (!sessions || sessions.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-gray-500 italic">Tiada sesi dijumpai dalam pangkalan data.</td></tr>`;
+                return;
+            }
+
+            sessions.forEach(session => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-blue-50/50 transition-colors group';
+                
+                const isActive = session.is_active;
+                
+                tr.innerHTML = `
+                    <td class="p-5 font-mono text-xs text-gray-400 text-center font-bold">#${session.id}</td>
+                    <td class="p-5">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-bold bg-gray-100 text-gray-600 border border-gray-200 uppercase tracking-wide">
+                            ${session.day || 'N/A'}
+                        </span>
+                    </td>
+                    <td class="p-5 font-medium text-gray-800 text-base">
+                        ${session.session_name}
+                    </td>
+                    <td class="p-5 text-center">
+                        <span id="badge-${session.id}" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold shadow-sm transition-colors ${isActive ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-red-100 text-red-700 border border-red-200'}">
+                            <span class="w-2 h-2 rounded-full mr-2 ${isActive ? 'bg-green-500' : 'bg-red-500'}"></span>
+                            ${isActive ? 'DIBUKA' : 'DITUTUP'}
+                        </span>
+                    </td>
+                    <td class="p-5 text-center">
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer" ${isActive ? 'checked' : ''} onchange="toggleSession('${session.id}', this.checked)">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        </label>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // 3. Update Status
+        async function toggleSession(id, newState) {
+            // Optimistic UI Update for Badge
+            const badge = document.getElementById(`badge-${id}`);
+            if (badge) {
+                if (newState) {
+                    badge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold shadow-sm transition-colors bg-green-100 text-green-700 border border-green-200';
+                    badge.innerHTML = `<span class="w-2 h-2 rounded-full mr-2 bg-green-500"></span>DIBUKA`;
+                } else {
+                    badge.className = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-bold shadow-sm transition-colors bg-red-100 text-red-700 border border-red-200';
+                    badge.innerHTML = `<span class="w-2 h-2 rounded-full mr-2 bg-red-500"></span>DITUTUP`;
+                }
+            }
+
+            // Database Update
+            const { error } = await supabase
+                .from('sessions')
+                .update({ is_active: newState })
+                .eq('id', id);
+
+            if (error) {
+                console.error('Error updating session:', error);
+                alert('Ralat sistem: Gagal mengemaskini status. Sila muat semula halaman.');
+                // Revert fetch to ensure UI matches DB state
+                fetchSessions(); 
+            } else {
+                showToast(`Sesi #${id} telah berjaya ${newState ? 'diaktifkan' : 'ditutup'}.`);
+            }
+        }
+
+        // 4. Toast Notification
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msg = document.getElementById('toastMessage');
+            
+            msg.innerText = message;
+            
+            // Show toast
+            toast.classList.remove('translate-y-32');
+            
+            // Reset timer if exists
+            if (toastTimeout) clearTimeout(toastTimeout);
+            
+            // Hide after 3 seconds
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-32');
+            }, 3000);
+        }
+
+        // --- INIT ---
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', fetchSessions);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+
+export const supabaseUrl = 'https://dauegzprzhawsivykuaq.supabase.co';
+export const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhdWVnenByemhhd3NpdnlrdWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5OTE2NzUsImV4cCI6MjA3OTU2NzY3NX0.PwQp4Jzk09bxgQKFPOAf00t7XAsP4f08elxAb8NV6Pk';
