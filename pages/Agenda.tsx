@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { PageHeader } from "../components/PageHeader";
 
@@ -15,8 +14,8 @@ export const Agenda = () => {
         { time: "3:00 - 6:00 PTG", title: "Daftar Masuk Penginapan", desc: "Ketibaan peserta dan urusan daftar masuk.", icon: "fa-suitcase" },
         { time: "6:30 - 7:30 MLM", title: "Makan Malam", desc: "Jamuan makan malam di dewan utama.", icon: "fa-utensils" },
         { time: "7:30 - 9:00 MLM", title: "Program Kerohanian", desc: "Bacaan Yassin & Tahlil, Solat Isyak Berjemaah.", icon: "fa-hands-praying" },
-        { time: "9:00 - 10:30 MLM", title: "Program Motivasi (Ceramah)", desc: "Topik: Solat & Kerja.", icon: "fa-lightbulb" },
-        { time: "10:30 MLM", title: "Minum Malam & Rehearsal", desc: "Minum malam dan sesi latihan raptai.", icon: "fa-clipboard-check" },
+        { time: "9:00 - 10:30 MLM", title: "Program Motivasi (Ceramah)", desc: "Topik: Solat Mantap Kerjaya Hebat.", icon: "fa-lightbulb" },
+        { time: "10:30 MLM", title: "Taklimat Konvensyen & Minum Malam", desc: "Taklimat ringkas urus setia dan minum malam.", icon: "fa-clipboard-check" },
       ]
     },
     {
@@ -25,14 +24,15 @@ export const Agenda = () => {
       date: "15 DIS",
       title: "Isnin",
       events: [
-        { time: "8:45 - 9:00 PG", title: "Taklimat Konvensyen", desc: "Penerangan ringkas berkenaan atur cara.", icon: "fa-info-circle" },
-        { time: "9:00 - 10:30 PG", title: "Majlis Perasmian & Anugerah FAMA Negeri 2025", desc: "Majlis penuh istiadat.", icon: "fa-award" },
-        { time: "10:30 - 11:00 PG", title: "Lawatan Pameran & Minum Pagi", desc: "Lawatan ke reruai pameran.", icon: "fa-store" },
+        { time: "8:00 - 9:00 PG", title: "Taklimat NGO", desc: "Sesi bersama NGO dan pemegang taruh.", icon: "fa-handshake" },
+        { time: "9:00 - 10:30 PG", title: "Majlis Perasmian & Anugerah FAMA Negeri 2025", desc: "Pakaian: Pejabat (Suit/Baju Kurung).", icon: "fa-award" },
+        { time: "10:30 - 11:00 PG", title: "Minum Pagi", desc: "Rehat sebentar.", icon: "fa-mug-hot" },
         { time: "11:00 - 1:00 TGH", title: "Forum Pengurusan Tertinggi (BoD)", desc: "Topik: Cabaran FAMA.", icon: "fa-users" },
-        { time: "1:00 - 2:30 PTG", title: "Rehat & Makan Tengahari", desc: "", icon: "fa-utensils" },
-        { time: "2:30 - 3:30 PTG", title: "Majlis Amanat Ketua Pengarah", desc: "Amanat tahunan oleh YBhg. Ketua Pengarah.", icon: "fa-microphone-alt" },
+        { time: "1:00 - 2:30 PTG", title: "Rehat & Makan Tengahari", desc: "Solat Zohor dan jamuan makan.", icon: "fa-utensils" },
+        { time: "2:30 - 3:30 PTG", title: "Majlis Amanat Ketua Pengarah", desc: "Amanat Tahunan oleh YBhg. Ketua Pengarah.", icon: "fa-microphone-alt" },
         { time: "3:30 - 5:30 PTG", title: "Penerangan & Pelaksanaan RMK-13", desc: "Oleh TKP SMO, TKP KP & TKP PIA.", icon: "fa-chart-line" },
-        { time: "8:30 - 10:30 MLM", title: "Pembentangan 8 Projek RMK-13", desc: "Pembentangan oleh Pengurus Kanan (Owner Project).", icon: "fa-project-diagram" },
+        { time: "8:30 - 10:30 MLM", title: "Pembentangan 8 Projek RMK-13", desc: "Oleh Pengurus Kanan (Owner Project). Pakaian: Smart Casual.", icon: "fa-project-diagram" },
+        { time: "10:30 MLM", title: "Minum Malam", desc: "Bersurai.", icon: "fa-moon" },
       ]
     },
     {
@@ -44,9 +44,10 @@ export const Agenda = () => {
         { time: "9:00 - 11:00 PG", title: "Pitching Projek RMK13", desc: "Sesi pembentangan idea dan projek.", icon: "fa-bullhorn" },
         { time: "11:00 - 11:15 PG", title: "Minum Pagi", desc: "Rehat sebentar.", icon: "fa-coffee" },
         { time: "11:15 - 1:15 TGH", title: "Pitching Projek RMK13 (Sambungan)", desc: "Sambungan sesi pembentangan.", icon: "fa-bullhorn" },
+        { time: "1:15 - 2:30 PTG", title: "Rehat & Makan Tengahari", desc: "", icon: "fa-utensils" },
         { time: "2:30 - 5:30 PTG", title: "Pitching Projek RMK13 (Akhir)", desc: "Sesi akhir pembentangan.", icon: "fa-bullhorn" },
-        { time: "5:30 - 6:30 PTG", title: "Riadah", desc: "Aktiviti santai dan senaman petang.", icon: "fa-running" },
-        { time: "8:00 - 10:30 MLM", title: "Majlis FAMA Prestij 2025", desc: "Makan malam gala dan anugerah kecemerlangan.", icon: "fa-star" },
+        { time: "5:30 - 6:30 PTG", title: "Minum Petang & Riadah", desc: "Aktiviti santai.", icon: "fa-running" },
+        { time: "8:00 - 10:30 MLM", title: "Majlis FAMA Prestij 2025", desc: "Tema: Nusantara. Makan malam gala.", icon: "fa-star" },
       ]
     },
     {
@@ -55,10 +56,11 @@ export const Agenda = () => {
       date: "17 DIS",
       title: "Rabu",
       events: [
-        { time: "9:00 - 10:00 PG", title: "Pembentangan : iFAMA", desc: "Sesi perkongsian inisiatif iFAMA.", icon: "fa-laptop" },
-        { time: "10:30 - 11:15 PG", title: "Resolusi Konvensyen", desc: "Pembentangan hasil dan resolusi konvensyen.", icon: "fa-file-contract" },
-        { time: "11:15 - 12:15 TGH", title: "Majlis Aspirasi Pengerusi FAMA", desc: "Bersama penyerahan Watikah SKT 2026.", icon: "fa-certificate" },
-        { time: "12:15 - 1:00 TGH", title: "Penyampaian Hadiah Sesi Pitching", desc: "Pengumuman pemenang projek terbaik.", icon: "fa-trophy" },
+        { time: "9:00 - 10:00 PG", title: "Pembentangan : iFAMA", desc: "Pakaian: Baju Korporat (Biru).", icon: "fa-laptop" },
+        { time: "10:00 - 10:30 PG", title: "Minum Pagi", desc: "Rehat sebentar.", icon: "fa-mug-hot" },
+        { time: "10:30 - 11:15 PG", title: "Majlis Aspirasi Pengerusi FAMA", desc: "Sesi bersama Pengerusi.", icon: "fa-user-tie" },
+        { time: "11:15 - 12:15 TGH", title: "Penyerahan Watikah SPK 2026", desc: "Dan Penyampaian Hadiah Sesi Pitching.", icon: "fa-certificate" },
+        { time: "12:15 - 1:00 TGH", title: "Resolusi Konvensyen", desc: "Rumusan program.", icon: "fa-file-signature" },
         { time: "1:00 PTG", title: "Makan Tengahari & Bersurai", desc: "Tamat program.", icon: "fa-sign-out-alt" },
       ]
     }
@@ -133,7 +135,7 @@ export const Agenda = () => {
            <div className="mt-8 text-center">
               <a 
                 href="#" 
-                onClick={(e) => { e.preventDefault(); alert('Fail PDF akan dimuat turun.'); }}
+                onClick={(e) => { e.preventDefault(); alert('Fungsi ini akan tersedia nanti.'); }}
                 className="inline-flex items-center justify-center px-6 py-2 border border-fama-red text-fama-red rounded-full hover:bg-fama-red hover:text-white transition-colors font-medium text-sm"
               >
                  Muat Turun Jadual Penuh (PDF) <i className="fas fa-file-pdf ml-2"></i>
