@@ -91,24 +91,27 @@ export const Register = ({ onRegister }: any) => {
     fetchActiveSessions();
   }, []);
 
-  const handleIdChange = (e: any) => {
+const handleIdChange = (e: any) => {
     const val = e.target.value.toUpperCase();
     setFormData(prev => ({ ...prev, id: val }));
 
+    // Syarat: Mula mencari bila ada 4 atau lebih karakter
     if (val.length >= 4) {
       const found = staffData.find((s: any) => s.id === val || s.id.endsWith(val));
       
       if (found) {
         setFormData({ 
-            id: found.id, 
-            name: found.name, 
+            id: found.id,              
+            name: found.name,          
             jawatan: found.jawatan, 
             penempatan: found.penempatan,
-            fama_negeri: found.fama_negeri || ''
+            fama_negeri: found.wing_negeri || '' 
         });
         setStatus('found');
       } else {
-         if (val.length >= 5) {
+         // PERUBAHAN DI SINI: Tukar 5 jadi 4
+         // Supaya kalau taip 4 digit pun dia bagitahu "Tak Jumpa"
+         if (val.length >= 4) {
             setStatus('not_found');
             setFormData(prev => ({ ...prev, name: '', jawatan: '', penempatan: '', fama_negeri: '' }));
          } else {
@@ -166,24 +169,12 @@ export const Register = ({ onRegister }: any) => {
               const lng = position.coords.longitude;
               const distance = calculateDistance(lat, lng, TARGET_LAT, TARGET_LONG);
               
-              // --- TRACKING 1: GEOFENCE CHECK ---
               if (distance > ALLOWED_RADIUS_KM) {
                   alert("Maaf, anda berada di luar kawasan konvensyen.");
-                  
-                  // Hantar data kegagalan ke GA4
-                  if (typeof window !== 'undefined' && (window as any).gtag) {
-                    (window as any).gtag('event', 'geofence_gagal', {
-                      'event_category': 'Validation',
-                      'event_label': 'Luar Kawasan',
-                      'value': distance // Rekod jarak (km)
-                    });
-                  }
-
                   setIsSubmitting(false);
                   setGeoStatus('idle');
                   return;
               }
-              // ----------------------------------
 
               setCoords({ latitude: String(lat), longitude: String(lng) });
               submitAllSessions(lat, lng);
@@ -218,8 +209,8 @@ export const Register = ({ onRegister }: any) => {
             nama: formData.name,
             jawatan: formData.jawatan,
             penempatan: formData.penempatan,
-            fama_negeri: formData.fama_negeri, 
-            tarikh_kehadir: sessionDetails.date, // Betulkan key database
+            wing_negeri: formData.fama_negeri,
+            tarikh_kehadiran: sessionDetails.date,
             sesi: sessionDetails.label,
             waktu_sesi: sessionDetails.time,
             latitude: cleanLat,
@@ -258,16 +249,6 @@ export const Register = ({ onRegister }: any) => {
       setGeoStatus('idle');
 
       if (successCount > 0) {
-          // --- TRACKING 2: SUCCESSFUL REGISTRATION ---
-          if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', 'pendaftaran_berjaya', {
-              'event_category': 'Registration',
-              'event_label': 'Success',
-              'count': successCount // Rekod berapa sesi dia daftar
-            });
-          }
-          // -------------------------------------------
-
           setStatus('submitted');
           if (failCount > 0) {
               alert(`Pendaftaran separa berjaya.\nBerjaya: ${successCount}\nGagal: ${failCount}\n\nInfo:\n${errorMessages.join('\n')}`);
@@ -295,7 +276,7 @@ export const Register = ({ onRegister }: any) => {
 
   return (
     <>
-      <PageHeader title="Pendaftaran Kehadiran" subtitle="Pilih tarikh dan sesi, kemudian masukkan ID Staf" />
+      <PageHeader title="Pendaftaran Kehadiran" subtitle="Masukkan No. Pekerja, Piluh Tarikh dan Sesi" />
       <section className="py-12 bg-white animate-fade-in min-h-[60vh]">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
@@ -345,6 +326,20 @@ export const Register = ({ onRegister }: any) => {
                                     {status === 'not_found' && <i className="fas fa-times-circle text-red-500 text-xl"></i>}
                                 </div>
                             </div>
+                            
+                            {status === 'not_found' && (
+                                <div className="mt-3 p-4 bg-red-100 border border-red-200 rounded-xl flex items-start space-x-3 animate-fade-in">
+                                    <div className="flex-shrink-0">
+                                        <i className="fas fa-exclamation-triangle text-red-600 text-xl mt-0.5"></i>
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-red-800 text-sm">Maaf, pendaftaran gagal.</h4>
+                                        <p className="text-red-700 text-sm mt-1">
+                                            Anda tidak didaftarkan sebagai peserta Konvensyen FAMA 2026.
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
                         <div className={`transition-all duration-500 ${status === 'found' ? 'opacity-100 translate-y-0' : 'opacity-50 grayscale'}`}>
@@ -359,7 +354,7 @@ export const Register = ({ onRegister }: any) => {
                                         <div className="font-medium text-gray-700 text-sm border-b border-gray-200 pb-1">{formData.jawatan || "-"}</div>
                                     </div>
                                     <div>
-                                        <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">FAMA Negeri</label>
+                                        <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Wing/FAMA Negeri</label>
                                         <div className="font-medium text-gray-700 text-sm border-b border-gray-200 pb-1">{formData.fama_negeri || "-"}</div>
                                     </div>
                                     <div className="md:col-span-2">
