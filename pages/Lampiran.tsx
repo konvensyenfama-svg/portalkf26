@@ -6,20 +6,20 @@ export const Lampiran = () => {
   // Mock data for 10 documents
   const documents = [
     { id: 1, title: "Kertas Kerja Utama: Hala Tuju 2026", url: "https://www.fama.gov.my" },
-    { id: 2, title: "Laporan Prestasi Kewangan 2024", url: "https://www.fama.gov.my" },
+    { id: 2, title: "Senarai Nama Peserta Konvensyen FAMA 2026", url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS-XCHUDRn02goJ-gliNzF9YcY2dBPWCRHkoIW_dx1e7dHXvf3M-5J5S6ls9UDl1O2JUSs47cYyyqRP/pubhtml?gid=1920558370&single=true" },
     { id: 3, title: "Slaid Pembentangan: Projek RMK-13", url: "https://www.fama.gov.my" },
-    { id: 4, title: "Garis Panduan Integriti FAMA", url: "https://www.fama.gov.my" },
-    { id: 5, title: "Jadual Penuh Konvensyen (PDF)", url: "https://www.fama.gov.my" },
-    { id: 6, title: "Buku Program Digital", url: "https://www.fama.gov.my" },
-    { id: 7, title: "Senarai Direktori Peserta", url: "https://www.fama.gov.my" },
-    { id: 8, title: "Peta Lokasi & Pelan Lantai", url: "https://www.fama.gov.my" },
-    { id: 9, title: "Borang Tuntutan Perjalanan", url: "https://www.fama.gov.my" },
-    { id: 10, title: "Borang Maklum Balas Program", url: "https://www.fama.gov.my" },
+    { id: 4, title: "-", url: "" },
+    { id: 5, title: "-", url: "" },
+    { id: 6, title: "-", url: "" },
+    { id: 7, title: "-", url: "" },
+    { id: 8, title: "-", url: "" },
+    { id: 9, title: "-", url: "" },
+    { id: 10, title: "-", url: "" },
   ].map((item, index) => ({
     ...item,
     image: `https://placehold.co/400x500/f3f4f6/1f2937?text=Dokumen+${index + 1}`, // Placeholder image generator
-    type: "PDF",
-    size: "2.4 MB"
+    type: "`",
+    size: ""
   }));
 
   const handleOpenDocument = (url) => {
@@ -34,7 +34,7 @@ export const Lampiran = () => {
            
            <div className="flex flex-col items-center mb-12">
               <span className="inline-block px-3 py-1 bg-fama-blue/10 text-fama-blue rounded-full text-xs font-bold uppercase tracking-widest mb-2">
-                Perpustakaan Digital
+                
               </span>
               <h2 className="text-3xl font-bold text-gray-800">Bahan Rujukan</h2>
            </div>
@@ -82,8 +82,6 @@ export const Lampiran = () => {
            <div className="mt-16 bg-blue-50 rounded-xl p-8 text-center border border-blue-100">
               <i className="fas fa-info-circle text-fama-blue text-2xl mb-3"></i>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Sila pastikan anda mempunyai sambungan internet yang stabil untuk memuat turun dokumen. 
-                Sebarang masalah akses boleh dirujuk kepada urus setia di meja pendaftaran.
               </p>
            </div>
         </div>
