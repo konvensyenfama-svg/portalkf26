@@ -234,7 +234,7 @@ export const Register = ({ onRegister }: any) => {
             wing_negeri: formData.fama_negeri,
             
             // PENTING: Guna 'tarikh_kehadir' ikut column DB
-            tarikh_kehadir: sessionDetails.date, 
+            tarikh_kehadiran: sessionDetails.date, 
             
             sesi: sessionDetails.label,
             waktu_sesi: sessionDetails.time,
