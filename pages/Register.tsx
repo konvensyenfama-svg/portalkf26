@@ -30,18 +30,42 @@ const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: numbe
   return d;
 };
 
-// --- Fallback Metadata ---
+// --- Fallback Metadata (UPDATED: 27 SESI IKUT TEKS TERKINI) ---
 const FALLBACK_METADATA: any = {
-  "1": { time: "19:30 - 21:00", date: "2025-12-14" },
-  "2": { time: "21:00 - 22:30", date: "2025-12-14" },
-  "3": { time: "08:45 - 10:30", date: "2025-12-15" },
-  "4": { time: "11:00 - 13:00", date: "2025-12-15" },
-  "5": { time: "14:30 - 17:30", date: "2025-12-15" },
-  "6": { time: "20:30 - 22:30", date: "2025-12-15" },
-  "7": { time: "09:00 - 13:15", date: "2025-12-16" },
-  "8": { time: "14:30 - 17:30", date: "2025-12-16" },
-  "9": { time: "20:00 - 22:30", date: "2025-12-16" },
-  "10": { time: "09:00 - 13:00", date: "2025-12-17" }
+  // HARI 1 - AHAD (14 DIS)
+  "1": { time: "15:00 - 18:00", date: "2025-12-14" }, // Daftar Masuk
+  "2": { time: "18:30 - 19:30", date: "2025-12-14" }, // Makan Malam
+  "3": { time: "19:30 - 21:00", date: "2025-12-14" }, // Program Kerohanian
+  "4": { time: "21:00 - 22:30", date: "2025-12-14" }, // Motivasi
+  "5": { time: "22:30 - 23:30", date: "2025-12-14" }, // Taklimat & Minum Malam
+
+  // HARI 2 - ISNIN (15 DIS)
+  "6": { time: "08:00 - 09:00", date: "2025-12-15" }, // Taklimat NGO
+  "7": { time: "09:00 - 10:30", date: "2025-12-15" }, // Perasmian
+  "8": { time: "10:30 - 11:00", date: "2025-12-15" }, // Minum Pagi
+  "9": { time: "11:00 - 13:00", date: "2025-12-15" }, // Forum BoD
+  "10": { time: "13:00 - 14:30", date: "2025-12-15" }, // Rehat Tengahari
+  "11": { time: "14:30 - 15:30", date: "2025-12-15" }, // Amanat KP
+  "12": { time: "15:30 - 17:30", date: "2025-12-15" }, // RMK-13
+  "13": { time: "20:30 - 22:30", date: "2025-12-15" }, // Pembentangan Projek
+  "14": { time: "22:30 - 23:00", date: "2025-12-15" }, // Minum Malam (H2)
+
+  // HARI 3 - SELASA (16 DIS)
+  "15": { time: "09:00 - 11:00", date: "2025-12-16" }, // Pitching 1
+  "16": { time: "11:00 - 11:15", date: "2025-12-16" }, // Minum Pagi (H3)
+  "17": { time: "11:15 - 13:15", date: "2025-12-16" }, // Pitching 2
+  "18": { time: "13:15 - 14:30", date: "2025-12-16" }, // Rehat Tengahari (H3)
+  "19": { time: "14:30 - 17:30", date: "2025-12-16" }, // Pitching Akhir
+  "20": { time: "17:30 - 18:30", date: "2025-12-16" }, // Minum Petang
+  "21": { time: "20:00 - 22:30", date: "2025-12-16" }, // Malam Prestij
+
+  // HARI 4 - RABU (17 DIS)
+  "22": { time: "09:00 - 10:00", date: "2025-12-17" }, // iFAMA
+  "23": { time: "10:00 - 10:30", date: "2025-12-17" }, // Minum Pagi (H4)
+  "24": { time: "10:30 - 11:15", date: "2025-12-17" }, // Aspirasi Pengerusi
+  "25": { time: "11:15 - 12:15", date: "2025-12-17" }, // Watikah & Hadiah
+  "26": { time: "12:15 - 13:00", date: "2025-12-17" }, // Resolusi
+  "27": { time: "13:00 - 14:00", date: "2025-12-17" }  // Makan & Bersurai
 };
 
 export const Register = ({ onRegister }: any) => {
@@ -91,7 +115,7 @@ export const Register = ({ onRegister }: any) => {
     fetchActiveSessions();
   }, []);
 
-const handleIdChange = (e: any) => {
+  const handleIdChange = (e: any) => {
     const val = e.target.value.toUpperCase();
     setFormData(prev => ({ ...prev, id: val }));
 
@@ -109,8 +133,6 @@ const handleIdChange = (e: any) => {
         });
         setStatus('found');
       } else {
-         // PERUBAHAN DI SINI: Tukar 5 jadi 4
-         // Supaya kalau taip 4 digit pun dia bagitahu "Tak Jumpa"
          if (val.length >= 4) {
             setStatus('not_found');
             setFormData(prev => ({ ...prev, name: '', jawatan: '', penempatan: '', fama_negeri: '' }));
@@ -210,7 +232,10 @@ const handleIdChange = (e: any) => {
             jawatan: formData.jawatan,
             penempatan: formData.penempatan,
             wing_negeri: formData.fama_negeri,
-            tarikh_kehadiran: sessionDetails.date,
+            
+            // PENTING: Guna 'tarikh_kehadir' ikut column DB
+            tarikh_kehadir: sessionDetails.date, 
+            
             sesi: sessionDetails.label,
             waktu_sesi: sessionDetails.time,
             latitude: cleanLat,
@@ -276,7 +301,7 @@ const handleIdChange = (e: any) => {
 
   return (
     <>
-      <PageHeader title="Pendaftaran Kehadiran" subtitle="Masukkan No. Pekerja, Piluh Tarikh dan Sesi" />
+      <PageHeader title="Pendaftaran Kehadiran" subtitle="Masukkan No. Pekerja, Pilih Tarikh dan Sesi" />
       <section className="py-12 bg-white animate-fade-in min-h-[60vh]">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
@@ -327,6 +352,7 @@ const handleIdChange = (e: any) => {
                                 </div>
                             </div>
                             
+                            {/* ERROR MSG BOX */}
                             {status === 'not_found' && (
                                 <div className="mt-3 p-4 bg-red-100 border border-red-200 rounded-xl flex items-start space-x-3 animate-fade-in">
                                     <div className="flex-shrink-0">
