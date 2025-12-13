@@ -4,7 +4,7 @@ import { PageHeader } from "../components/PageHeader";
 export const Lampiran = () => {
   // Mock data for 15 documents now
   const documents = [
-    { id: 1, title: "Dashboard Kehadiran Peserta", url: "dashboard.kf26.my" },
+    { id: 1, title: "Dashboard Kehadiran Peserta", url: "https://dashboard.kf26.my" },
     { id: 2, title: "Slaid Pembentangan: Pembangunan Pasaran Agromakanan (PPAM)", url: "https://drive.google.com/drive/folders/1vnClZno763uBSzzKHOOBifVC1wS33o4q?usp=sharing" },
     { id: 3, title: "Slaid Pembentangan: Rantaian Pembekalan dan Pengedaran Agromakanan (RANTAI)", url: "https://drive.google.com/drive/folders/16_ya0do3M9rLk8CfDzbHbAxiqikYxkKu?usp=drive_link" },
     { id: 4, title: "Slaid Pembentangan: Pembangunan Pasaran dan Padanan Produk Mikro IAT", url: "https://drive.google.com/drive/folders/14ImA8o-xe8oxSz-sGnLAl7KgrnWR1FDY?usp=drive_link" },
