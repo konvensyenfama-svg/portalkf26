@@ -24,14 +24,14 @@ export const Agenda = () => {
       date: "15 DIS",
       title: "Isnin",
       events: [
-        { time: "8:00 - 9:00 PG", title: "Taklimat NGO", desc: "Sesi bersama NGO dan pemegang taruh.", icon: "fa-handshake" },
-        { time: "9:00 - 10:30 PG", title: "Majlis Perasmian & Anugerah FAMA Negeri 2025", desc: "Pakaian: Pejabat (Suit/Baju Kurung).", icon: "fa-award" },
+        { time: "8:00 - 9:00 PG", title: "Taklimat NGO", desc: "(PUSPANITA/KSKF/PERKIF/KPE/KEKAF).", icon: "fa-handshake" },
+        { time: "9:00 - 10:30 PG", title: "Majlis Perasmian & Anugerah FAMA Negeri 2025", desc: "Pakaian: Pejabat (Blazer - Perasmian).", icon: "fa-award" },
         { time: "10:30 - 11:00 PG", title: "Minum Pagi", desc: "Rehat sebentar.", icon: "fa-mug-hot" },
-        { time: "11:00 - 1:00 TGH", title: "Forum Pengurusan Tertinggi (BoD)", desc: "Topik: Cabaran FAMA.", icon: "fa-users" },
+        { time: "11:00 - 1:00 TGH", title: "Forum FAMA 60 Tahun", desc: "Topik: Mengukuh Fungsi, Mengemudi Cabaran, Merealisasi Halatuju.", icon: "fa-users" },
         { time: "1:00 - 2:30 PTG", title: "Rehat & Makan Tengahari", desc: "Solat Zohor dan jamuan makan.", icon: "fa-utensils" },
-        { time: "2:30 - 3:30 PTG", title: "Majlis Amanat Ketua Pengarah", desc: "Amanat Tahunan oleh YBhg. Ketua Pengarah.", icon: "fa-microphone-alt" },
-        { time: "3:30 - 5:30 PTG", title: "Penerangan & Pelaksanaan RMK-13", desc: "Oleh TKP SMO, TKP KP & TKP PIA.", icon: "fa-chart-line" },
-        { time: "8:30 - 10:30 MLM", title: "Pembentangan 8 Projek RMK-13", desc: "Oleh Pengurus Kanan (Owner Project). Pakaian: Smart Casual.", icon: "fa-project-diagram" },
+        { time: "2:30 - 3:30 PTG", title: "Majlis Amanat Ketua Pengarah", desc: "Memacu Pemasaran Menjamin Kedaulatan Makanan.", icon: "fa-microphone-alt" },
+        { time: "3:30 - 5:30 PTG", title: "Penerangan & Pelaksanaan RMK-13", desc: "Oleh TKP(SMO), TKP(KP) & TKP(PIA).", icon: "fa-chart-line" },
+        { time: "8:30 - 10:30 MLM", title: "Pembentangan 8 Projek RMK-13", desc: "Oleh PK (Owner Project). Pakaian: Smart Casual.", icon: "fa-project-diagram" },
         { time: "10:30 MLM", title: "Minum Malam", desc: "Bersurai.", icon: "fa-moon" },
       ]
     },
@@ -47,7 +47,7 @@ export const Agenda = () => {
         { time: "1:15 - 2:30 PTG", title: "Rehat & Makan Tengahari", desc: "", icon: "fa-utensils" },
         { time: "2:30 - 5:30 PTG", title: "Pitching Projek RMK13 (Akhir)", desc: "Sesi akhir pembentangan.", icon: "fa-bullhorn" },
         { time: "5:30 - 6:30 PTG", title: "Minum Petang & Riadah", desc: "Aktiviti santai.", icon: "fa-running" },
-        { time: "8:00 - 10:30 MLM", title: "Majlis FAMA Prestij 2025", desc: "Tema: Nusantara. Makan malam gala.", icon: "fa-star" },
+        { time: "8:00 - 10:30 MLM", title: "Majlis FAMA Prestij 2025", desc: "Tema: Nusantara.", icon: "fa-star" },
       ]
     },
     {
@@ -60,7 +60,7 @@ export const Agenda = () => {
         { time: "10:00 - 10:30 PG", title: "Minum Pagi", desc: "Rehat sebentar.", icon: "fa-mug-hot" },
         { time: "10:30 - 11:15 PG", title: "Majlis Aspirasi Pengerusi FAMA", desc: "Sesi bersama Pengerusi.", icon: "fa-user-tie" },
         { time: "11:15 - 12:15 TGH", title: "Penyerahan Watikah SPK 2026", desc: "Dan Penyampaian Hadiah Sesi Pitching.", icon: "fa-certificate" },
-        { time: "12:15 - 1:00 TGH", title: "Resolusi Konvensyen", desc: "Rumusan program.", icon: "fa-file-signature" },
+        { time: "12:15 - 1:00 TGH", title: "Resolusi Konvensyen", desc: "", icon: "fa-file-signature" },
         { time: "1:00 PTG", title: "Makan Tengahari & Bersurai", desc: "Tamat program.", icon: "fa-sign-out-alt" },
       ]
     }
