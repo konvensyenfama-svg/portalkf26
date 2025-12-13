@@ -90,7 +90,7 @@ export const Lampiran = () => {
            <div className="mt-12 bg-blue-50 rounded-xl p-6 text-center border border-blue-100">
               <i className="fas fa-info-circle text-fama-blue text-xl mb-2"></i>
               <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-                 Sila pastikan anda log masuk menggunakan akaun Google rasmi untuk mengakses fail sulit.
+                 .
               </p>
            </div>
         </div>
