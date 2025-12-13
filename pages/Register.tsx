@@ -10,7 +10,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // --- Geofencing Configuration ---
 const TARGET_LAT = 2.42027; // Venue Latitude (ILF Port Dickson)
 const TARGET_LONG = 101.89122; // Venue Longitude
-const ALLOWED_RADIUS_KM = 0.2; // Allowed radius in KM
+const ALLOWED_RADIUS_KM = 0.05; // Allowed radius in KM
 
 // --- Helper Functions for Distance Calculation ---
 const deg2rad = (deg: number) => {
