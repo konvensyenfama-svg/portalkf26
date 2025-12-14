@@ -1,6 +1,10 @@
 
 export const staffData = [
   { id: "P2019", name: "OMAR SHARAFY BIN MOHD YUSSOF", jawatan: "AKAUNTAN", wing_negeri: "TKP (KP)", penempatan: "BAHAGIAN KEWANGAN." },
+  { id: "P2019", name: "ABDUL RASHID BIN BAHRI", jawatan: "PEGAWAI EHWAL EKONOMI PENGURUSAN TERTINGGI", wing_negeri: "KETUA PENGARAH", penempatan: "PEJABAT KETUA PENGARAH" },
+  { id: "P2019", name: "SURAYA BINTI MOHD YUSOF", jawatan: "PEGAWAI EHWAL EKONOMI PENGURUSAN TERTINGGI", wing_negeri: "TKP (PIA)", penempatan: "PEJABAT TIMBALAN KETUA PENGARAH (PEMBANGUNAN INDUSTRI AGROMAKANAN)" },
+  { id: "P2019", name: "FAISAL ISWARDI BIN ISMAIL", jawatan: "PEGAWAI EHWAL EKONOMI PENGURUSAN TERTINGGI", wing_negeri: "TKP (SMO)", penempatan: "PEJABAT TIMBALAN KETUA PENGARAH (SEKURITI MAKANAN & OPERASI)" },
+  { id: "P2019", name: "SHAHRIZAN BIN SUDIMAN", jawatan: "PEGAWAI EHWAL EKONOMI PENGURUSAN TERTINGGI", wing_negeri: "TKP (KP)", penempatan: "PEJABAT TIMBALAN KETUA PENGARAH (KHIDMAT PENGURUSAN)" },
   { id: "P2234", name: "AIDAWATY BINTI SALEH", jawatan: "AKAUNTAN", wing_negeri: "TKP (KP)", penempatan: "BAHAGIAN KEWANGAN." },
   { id: "P1869", name: "NAZATULSHIMA BINTI CHE NAN", jawatan: "AKAUNTAN", wing_negeri: "TKP (KP)", penempatan: "BAHAGIAN KEWANGAN." },
   { id: "P2509", name: "HASNAWINEE BINTI MOHD NAWI", jawatan: "AKAUNTAN", wing_negeri: "TKP (KP)", penempatan: "BAHAGIAN KEWANGAN." },
