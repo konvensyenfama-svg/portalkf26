@@ -220,5 +220,7 @@ export const staffData = [
   { id: "P2816", name: "MOHAMMAD HANIF BIN ABDUL HAMID", jawatan: "PENOLONG PEGAWAI EHWAL EKONOMI", wing_negeri: "FAMA KEDAH", penempatan: "PEJABAT FAMA NEGERI KEDAH" },
   { id: "P2505", name: "SHIFUL BAHARI BIN ITHNIN", jawatan: "AKAUNTAN", wing_negeri: "TKP (KP)", penempatan: "BAHAGIAN KEWANGAN." },
   { id: "P3721", name: "MOHAMAD HAFIZ AFFENDI BIN SAAD", jawatan: "PEGAWAI EHWAL EKONOMI", wing_negeri: "TKP (SMO)", penempatan: "BAHAGIAN PEMASARAN SEGAR & INTERVENSI" },
-  { id: "P3548", name: "MOHAMAD KHUZAIFAH BIN HOLID", jawatan: "PEMBANTU EHWAL EKONOMI", wing_negeri: "FAMA PAHANG", penempatan: "PEJABAT FAMA NEGERI PAHANG" }
+  { id: "P3548", name: "MOHAMAD KHUZAIFAH BIN HOLID", jawatan: "PEMBANTU EHWAL EKONOMI", wing_negeri: "FAMA PAHANG", penempatan: "PEJABAT FAMA NEGERI PAHANG" },
+  { id: "P3114", name: "JIMMY P.MASAMIL", jawatan: "PENOLONG PEGAWAI EHWAL EKONOMI", wing_negeri: "FAMA SABAH", penempatan: "PUSAT OPERASI FAMA NEGERI SABAH" }
+  
 ];
