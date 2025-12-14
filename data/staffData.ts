@@ -32,7 +32,6 @@ export const staffData = [
   { id: "P1978", name: "SITI NURUL HAIDA BINTI IBRAHIM", jawatan: "PEGAWAI EHWAL EKONOMI", wing_negeri: "TKP (SMO)", penempatan: "BAHAGIAN KEUSAHAWANAN PEMASAR" },
   { id: "P2498", name: "MUHAMMAD NAZRI BIN KAMARUL ZAMAN", jawatan: "PEGAWAI EHWAL EKONOMI", wing_negeri: "TKP (SMO)", penempatan: "BAHAGIAN KEUSAHAWANAN PEMASAR" },
   { id: "P2441", name: "SHAHIIDA BINTI MUSA", jawatan: "PEGAWAI EHWAL EKONOMI", wing_negeri: "TKP (PIA)", penempatan: "BAHAGIAN DASAR & PERANCANGAN STRATEGIK" },
-  { id: "P2439", name: "SHAHLAN BIN KUSASEH", jawatan: "PEGAWAI EHWAL EKONOMI", wing_negeri: "TKP (PIA)", penempatan: "BAHAGIAN DASAR & PERANCANGAN STRATEGIK" },
   { id: "P3094", name: "MOHD NAZIM BIN MOHD ADNAN", jawatan: "PEGAWAI EHWAL EKONOMI", wing_negeri: "TKP (PIA)", penempatan: "BAHAGIAN DASAR & PERANCANGAN STRATEGIK" },
   { id: "P2493", name: "KAMALIAH BINTI YUSUFF", jawatan: "PEGAWAI EHWAL EKONOMI", wing_negeri: "TKP (PIA)", penempatan: "BAHAGIAN DASAR & PERANCANGAN STRATEGIK" },
   { id: "P1977", name: "NOOR AFFANDIE BIN ISMAIL", jawatan: "JURUTERA", wing_negeri: "TKP (KP)", penempatan: "BAHAGIAN KEJURUTERAAN." },
