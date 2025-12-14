@@ -2,94 +2,142 @@ import React from "react";
 import { PageHeader } from "../components/PageHeader";
 
 export const Lampiran = () => {
-  // Mock data for 15 documents now
-  const documents = [
-    { id: 1, title: "Dashboard Kehadiran Peserta", url: "https://dashboard.kf26.my" },
-    { id: 2, title: "Slaid Pembentangan: Pembangunan Pasaran Agromakanan (PPAM)", url: "https://drive.google.com/drive/folders/1vnClZno763uBSzzKHOOBifVC1wS33o4q?usp=sharing" },
-    { id: 3, title: "Slaid Pembentangan: Rantaian Pembekalan dan Pengedaran Agromakanan (RANTAI)", url: "https://drive.google.com/drive/folders/16_ya0do3M9rLk8CfDzbHbAxiqikYxkKu?usp=drive_link" },
-    { id: 4, title: "Slaid Pembentangan: Pembangunan Pasaran dan Padanan Produk Mikro IAT", url: "https://drive.google.com/drive/folders/14ImA8o-xe8oxSz-sGnLAl7KgrnWR1FDY?usp=drive_link" },
-    { id: 5, title: "Slaid Pembentangan: Pemodenan Ekosistem Pemasaran Pertanian", url: "https://drive.google.com/drive/folders/15kNqmlC8476tBzgAShl1WzaO9KEI8aab?usp=drive_link" },
-    { id: 6, title: "Slaid Pembentangan: Rejuvenasi Outlet Pemasaran", url: "https://drive.google.com/drive/folders/1TBtqByK11ZNoX1m7ZKnvN7ZH-IN4WqSU?usp=drive_link" },
-    { id: 7, title: "Slaid Pembentangan: Program Pemerkasaan Eksport dan Keusahawanan (Globex)", url: "https://drive.google.com/drive/folders/15kNqmlC8476tBzgAShl1WzaO9KEI8aab?usp=drive_link" },
-    { id: 8, title: "Slaid Pembentangan: Jaringan Digital Agromakanan (DIGIFOOD NETWORK)", url: "https://drive.google.com/drive/folders/1fphHC6R4dOpk1dlcTYGJ4a6WmmP2ZvI7?usp=drive_link" },
-    { id: 9, title: "Slaid Pembentangan: Pengukuhan Standard & Regulatori Ekosistem Agromakanan", url: "https://drive.google.com/drive/folders/1IqEzOuVjabnj2TnO34JDzzLOV9_fk24B?usp=drive_link" },
-    { id: 10, title: "Senarai Nama Peserta Konvensyen FAMA 2026", url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS-XCHUDRn02goJ-gliNzF9YcY2dBPWCRHkoIW_dx1e7dHXvf3M-5J5S6ls9UDl1O2JUSs47cYyyqRP/pubhtml?gid=1920558370&single=true" },
-    { id: 11, title: "-", url: "Belum Dikemaskini" },
-    { id: 12, title: "-", url: "Belum Dikemaskini" },
-    { id: 13, title: "-", url: "Belum Dikemaskini" },
-    { id: 14, title: "-", url: "Belum Dikemaskini" },
-    { id: 15, title: "-", url: "Belum Dikemaskini" },
-  ].map((item, index) => ({
-    ...item,
-    image: `https://placehold.co/400x500/f3f4f6/1f2937?text=Dokumen+${index + 1}`,
-    type: "PDF",
-    size: "2.4MB" // Letak size default
-  }));
+  // 1. Data Definition
+  const rawDocuments = [
+    { id: 1, title: "Dashboard Kehadiran Peserta", url: "https://dashboard.kf26.my", type: "dashboard" },
+    { id: 2, title: "Senarai Nama Peserta Konvensyen FAMA 2026", url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRacZCWatHXE48t5WIRL8w4Vn92rwY_DRNogQtRXAmzjRoZVwP7uZpAmdAfiz4_0e9mthsRnSw3idrW/pubhtml?gid=1920558370&single=true", type: "sheet" },
+    { id: 3, title: "TOR  : Terma Rujukan Projek Pembangunan RMK-13 ", url: "https://drive.google.com/file/d/17kjDGl6p5npauIpRqHjfX0j-P0L1tDch/view?usp=sharing", type: "slide" },
+    { id: 4, title: "Slaid: Pembangunan Pasaran Agromakanan (PPAM)", url: "https://drive.google.com/drive/folders/1vnClZno763uBSzzKHOOBifVC1wS33o4q?usp=sharing", type: "slide" },
+    { id: 5, title: "Slaid: Rantaian Pembekalan dan Pengedaran (RANTAI)", url: "https://drive.google.com/drive/folders/16_ya0do3M9rLk8CfDzbHbAxiqikYxkKu?usp=drive_link", type: "slide" },
+    { id: 6, title: "Slaid: Pembangunan Pasaran dan Padanan Produk Mikro IAT", url: "https://drive.google.com/drive/folders/14ImA8o-xe8oxSz-sGnLAl7KgrnWR1FDY?usp=drive_link", type: "slide" },
+    { id: 7, title: "Slaid: Pemodenan Ekosistem Pemasaran Pertanian", url: "https://drive.google.com/drive/folders/15kNqmlC8476tBzgAShl1WzaO9KEI8aab?usp=drive_link", type: "slide" },
+    { id: 8, title: "Slaid: Rejuvenasi Outlet Pemasaran", url: "https://drive.google.com/drive/folders/1TBtqByK11ZNoX1m7ZKnvN7ZH-IN4WqSU?usp=drive_link", type: "slide" },
+    { id: 9, title: "Slaid: Program Pemerkasaan Eksport (Globex)", url: "https://drive.google.com/drive/folders/15kNqmlC8476tBzgAShl1WzaO9KEI8aab?usp=drive_link", type: "slide" },
+    { id: 10, title: "Slaid: Jaringan Digital Agromakanan (DIGIFOOD)", url: "https://drive.google.com/drive/folders/1fphHC6R4dOpk1dlcTYGJ4a6WmmP2ZvI7?usp=drive_link", type: "slide" },
+    { id: 11, title: "Slaid: Pengukuhan Standard & Regulatori", url: "https://drive.google.com/drive/folders/1IqEzOuVjabnj2TnO34JDzzLOV9_fk24B?usp=drive_link", type: "slide" },
+    { id: 12, title: "Pitching 1 : Pembangunan Pasaran Agromakanan (PPAM)", url: "https://drive.google.com/file/d/1cEhsPfUi8y-scxbP4rZHrDczsWGvr7p9/preview", type: "slide" },
+    { id: 13, title: "Pitching 2 : Pembangunan Pasaran dan Padanan Produk Mikro IAT", url: "https://drive.google.com/file/d/1lHOkNJPAgPSWaipFJAtr--S5hqkwkr_W/preview", type: "slide" },
+    { id: 14, title: "Pitching 3 : Rantaian Pembekalan dan Pengedaran (RANTAI)", url: "https://drive.google.com/file/d/1JR_JuDfCYp4lcxraGibnKGT5_W74oJuq/preview", type: "slide" },
+    { id: 15, title: "Pitching 4 : Rejuvenasi Outlet Pemasaran", url: "https://drive.google.com/file/d/13ahXejQhHNmUUzGwmjDzp-Kggp0ArBQW/preview", type: "slide" },
+    { id: 16, title: "Slide: iFAMA ", url: "https://drive.google.com/file/d/11ZNWxDBS3kR1WKH7y_hCdYw94YpwlCKP/preview", type: "slide" },
+  ];
+
+  // 2. Filter item kosong secara automatik
+  const documents = rawDocuments.filter(doc => doc.title !== "-");
 
   const handleOpenDocument = (url) => {
-    if(url && url !== "placeholder") window.open(url, "_blank");
+    if (url && url !== "Belum Dikemaskini") window.open(url, "_blank");
+  };
+
+  // 3. Helper function untuk tentukan style ikon
+  const getDocStyle = (type) => {
+    switch (type) {
+      case 'slide':
+        return { 
+          bg: "bg-orange-50", 
+          text: "text-orange-600", 
+          icon: "fa-file-powerpoint", 
+          label: "PDF / Slaid" 
+        };
+      case 'dashboard':
+        return { 
+          bg: "bg-blue-50", 
+          text: "text-blue-600", 
+          icon: "fa-chart-line", 
+          label: "Dashboard" 
+        };
+      case 'sheet':
+        return { 
+          bg: "bg-green-50", 
+          text: "text-green-600", 
+          icon: "fa-file-excel", 
+          label: "Senarai" 
+        };
+      default:
+        return { 
+          bg: "bg-gray-50", 
+          text: "text-gray-600", 
+          icon: "fa-file-alt", 
+          label: "Dokumen" 
+        };
+    }
   };
 
   return (
     <>
-      <PageHeader title="Lampiran & Dokumen" subtitle="Pusat rujukan dokumen dan bahan edaran konvensyen" />
-      <section className="py-16 bg-white animate-fade-in min-h-screen">
+      <PageHeader title="Lampiran & Dokumen" subtitle="" />
+      
+      <section className="py-16 bg-gray-50/50 min-h-screen">
         <div className="container mx-auto px-4">
             
-           <div className="flex flex-col items-center mb-10">
-              <span className="inline-block px-3 py-1 bg-fama-blue/10 text-fama-blue rounded-full text-xs font-bold uppercase tracking-widest mb-2">
-                
-              </span>
-              <h2 className="text-3xl font-bold text-gray-800">Bahan Rujukan</h2>
+           <div className="flex flex-col items-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-800 relative inline-block">
+                Bahan Rujukan
+                <div className="absolute -bottom-2 left-0 right-0 h-1 bg-fama-blue/30 rounded-full w-1/2 mx-auto"></div>
+              </h2>
+              <p className="text-gray-500 mt-3 text-sm max-w-lg text-center">
+                Sila klik pada kad di bawah untuk mengakses dokumen.
+              </p>
            </div>
 
-           {/* Grid Layout: Kekal 6 column (kecil) */}
-           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              {documents.map((doc) => (
-                <div 
-                  key={doc.id} 
-                  onClick={() => handleOpenDocument(doc.url)}
-                  className="group bg-white rounded-lg shadow-md hover:shadow-xl border border-gray-100 overflow-hidden cursor-pointer transform hover:-translate-y-1 transition-all duration-300 flex flex-col h-full"
-                >
-                    {/* Image Placeholder */}
-                    <div className="relative aspect-[3/4] overflow-hidden bg-gray-100 border-b border-gray-100">
-                        <img 
-                          src={doc.image} 
-                          alt={doc.title} 
-                          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500" 
-                        />
-                        
-                        {/* Overlay on Hover */}
-                        <div className="absolute inset-0 bg-fama-blue/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white">
-                            <i className="fas fa-external-link-alt text-2xl mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform"></i>
-                            <span className="text-[10px] font-bold uppercase tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform delay-75">Buka</span>
+           {/* Tukar Grid Layout kepada responsive yang lebih selesa (2, 3, 4 col) */}
+           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {documents.map((doc) => {
+                const style = getDocStyle(doc.type);
+                
+                return (
+                  <div 
+                    key={doc.id} 
+                    onClick={() => handleOpenDocument(doc.url)}
+                    className="group bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl border border-gray-100 cursor-pointer transform hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-full relative overflow-hidden"
+                  >
+                    {/* Decorative Top Background */}
+                    <div className={`absolute top-0 right-0 w-24 h-24 ${style.bg} rounded-bl-full -mr-4 -mt-4 opacity-50 transition-transform group-hover:scale-110`}></div>
+
+                    <div>
+                        {/* Header: Icon & Type */}
+                        <div className="flex items-start justify-between mb-4">
+                            <div className={`w-12 h-12 ${style.bg} ${style.text} rounded-xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition-transform duration-300`}>
+                                <i className={`fas ${style.icon}`}></i>
+                            </div>
+                            <span className={`text-[10px] font-bold uppercase tracking-wider py-1 px-2 rounded-lg ${style.bg} ${style.text}`}>
+                                {style.label}
+                            </span>
                         </div>
 
-                        {/* File Type Badge */}
-                        <div className="absolute top-2 right-2 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded shadow-sm z-10">
-                            {doc.type}
-                        </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-3 flex-grow flex flex-col">
-                        {/* Text wrapping enabled (no line-clamp) */}
-                        <h3 className="text-xs font-bold text-gray-800 leading-snug mb-2 group-hover:text-fama-red transition-colors break-words">
+                        {/* Title */}
+                        <h3 className="text-sm font-bold text-gray-800 leading-relaxed mb-2 group-hover:text-fama-blue transition-colors line-clamp-3">
                             {doc.title}
                         </h3>
-                        
-                        <div className="mt-auto pt-2 border-t border-gray-50 flex items-center text-[10px] text-gray-400">
-                           <i className="fas fa-file-alt mr-1.5"></i> {doc.size}
-                        </div>
                     </div>
-                </div>
-              ))}
+
+                    {/* Footer: Action Link */}
+                    <div className="mt-4 pt-4 border-t border-gray-50 flex items-center justify-between text-xs text-gray-400 group-hover:text-fama-blue transition-colors">
+                        <span className="flex items-center gap-2">
+                           <i className="fas fa-external-link-alt"></i> Buka Pautan
+                        </span>
+                        <i className="fas fa-arrow-right opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                    </div>
+                  </div>
+                );
+              })}
            </div>
 
-           <div className="mt-12 bg-blue-50 rounded-xl p-6 text-center border border-blue-100">
-              <i className="fas fa-info-circle text-fama-blue text-xl mb-2"></i>
-              <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-                 .
+           {/* Empty State visual kalau tiada dokumen */}
+           {documents.length === 0 && (
+             <div className="text-center py-12 text-gray-400">
+               <i className="fas fa-folder-open text-4xl mb-3 opacity-50"></i>
+               <p>Tiada dokumen untuk dipaparkan masa ini.</p>
+             </div>
+           )}
+
+           <div className="mt-16 bg-blue-50/80 rounded-2xl p-6 text-center border border-blue-100 max-w-3xl mx-auto">
+              <div className="flex items-center justify-center gap-3 mb-2 text-fama-blue">
+                 <i className="fas fa-info-circle text-lg"></i>
+                 <span className="font-bold text-sm uppercase tracking-wide"></span>
+              </div>
+              <p className="text-sm text-gray-600">
+                 
               </p>
            </div>
         </div>
