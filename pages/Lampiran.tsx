@@ -4,7 +4,7 @@ import { PageHeader } from "../components/PageHeader";
 export const Lampiran = () => {
   // 1. Data Definition
   const rawDocuments = [
-    { id: 1, title: "Dashboard Kehadiran Peserta", url: "https://dashboard.kf26.my", type: "dashboard" },
+    { id: 1, title: "Dashboard Kehadiran Peserta", url: "Maaf. Sistem Dashboard Sedang Dikemaskini", type: "dashboard" },
     { id: 2, title: "Senarai Nama Peserta Konvensyen FAMA 2026", url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRacZCWatHXE48t5WIRL8w4Vn92rwY_DRNogQtRXAmzjRoZVwP7uZpAmdAfiz4_0e9mthsRnSw3idrW/pubhtml?gid=1920558370&single=true", type: "sheet" },
     { id: 3,title: "SLIDE KP - KONVENSYEN FAMA 2026 ", url: "https://drive.google.com/file/d/1rqSzn3FbPULsR9ucrBaGyTa4O-dokbLP/preview", type: "slide" },
     { id: 4, title: "TOR  : Terma Rujukan Projek Pembangunan RMK-13 ", url: "https://drive.google.com/file/d/17kjDGl6p5npauIpRqHjfX0j-P0L1tDch/view?usp=sharing", type: "slide" },
@@ -14,15 +14,16 @@ export const Lampiran = () => {
     { id: 8, title: "Slaid: Pemodenan Ekosistem Pemasaran Pertanian", url: "https://drive.google.com/drive/folders/15kNqmlC8476tBzgAShl1WzaO9KEI8aab?usp=drive_link", type: "slide" },
     { id: 9, title: "Slaid: Rejuvenasi Outlet Pemasaran", url: "https://drive.google.com/drive/folders/1TBtqByK11ZNoX1m7ZKnvN7ZH-IN4WqSU?usp=drive_link", type: "slide" },
     { id: 10, title: "Slaid: Program Pemerkasaan Eksport (Globex)", url: "https://drive.google.com/drive/folders/1zgmgwRisNS4sSXu3wjO6B3hHH9SJIbLZ?usp=drive_link", type: "slide" },
-    { id: 11, title: "Slaid: Jaringan Digital Agromakanan (DIGIFOOD)", url: "https://drive.google.com/drive/folders/1fphHC6R4dOpk1dlcTYGJ4a6WmmP2ZvI7?usp=drive_link", type: "slide" },
+    { id: 11, title: "Slaid: Jaringan Digital Agromakanan (JARINGAN)", url: "https://drive.google.com/drive/folders/1fphHC6R4dOpk1dlcTYGJ4a6WmmP2ZvI7?usp=drive_link", type: "slide" },
     { id: 12, title: "Slaid: Pengukuhan Standard & Regulatori", url: "https://drive.google.com/drive/folders/1IqEzOuVjabnj2TnO34JDzzLOV9_fk24B?usp=drive_link", type: "slide" },
     { id: 13, title: "Tentatif Pitching", url: "https://drive.google.com/file/d/19J5ULxsUQI1tlvtvGsjUnA_x2Md_3rsy/preview", type: "slide" },
-    { id: 13, title: "Pitching 1 : Pembangunan Pasaran Agromakanan (PPAM)", url: "https://drive.google.com/file/d/1nCRLSrlx3QMWruV5clxBflNL8fmGdH--/preview", type: "slide" },
-    { id: 14, title: "Pitching 2 : Pembangunan Pasaran dan Padanan Produk Mikro IAT", url: "https://drive.google.com/file/d/1lHOkNJPAgPSWaipFJAtr--S5hqkwkr_W/preview", type: "slide" },
-    { id: 15, title: "Pitching 3 : Rantaian Pembekalan dan Pengedaran (RANTAI)", url: "https://drive.google.com/file/d/1JR_JuDfCYp4lcxraGibnKGT5_W74oJuq/preview", type: "slide" },
-    { id: 16, title: "Pitching 4 : Rejuvenasi Outlet Pemasaran", url: "https://drive.google.com/file/d/1ZQBIdwnC-q_GZih4E9jQpk2hdrvsMbt0/preview", type: "slide" },
-    { id: 17, title: "Slide: Portal iFAMA ", url: "https://drive.google.com/file/d/11ZNWxDBS3kR1WKH7y_hCdYw94YpwlCKP/preview", type: "slide" },
-    { id: 18, title: "Slide: Paparan iFAMA ", url: "https://drive.google.com/file/d/1VJm3H7BUUrKGRH1OOhHGpGp_4ooFOQ2Z/preview", type: "slide" },
+    { id: 14, title: "QR Juri Awam", url: "https://drive.google.com/file/d/19t8i7PSuy3V6Mt1Lkfsbk8C5F0yhQ8TR/preview", type: "slide" },
+    { id: 15, title: "Pitching 1 : Pembangunan Pasaran Agromakanan (PPAM)", url: "https://drive.google.com/file/d/1nCRLSrlx3QMWruV5clxBflNL8fmGdH--/preview", type: "slide" },
+    { id: 16, title: "Pitching 2 : Pembangunan Pasaran dan Padanan Produk Mikro IAT", url: "https://drive.google.com/file/d/1NlWIpXiXoNc2xKVpgX1cImRfygyPjn6S/preview", type: "slide" },
+    { id: 17, title: "Pitching 3 : Rantaian Pembekalan dan Pengedaran (RANTAI)", url: "https://drive.google.com/file/d/1hNbMoQjtIQfFJMGn2-T_pq4Le-RP66FC/preview", type: "slide" },
+    { id: 18, title: "Pitching 4 : Rejuvenasi Outlet Pemasaran", url: "https://drive.google.com/file/d/1ZQBIdwnC-q_GZih4E9jQpk2hdrvsMbt0/preview", type: "slide" },
+    { id: 19, title: "Slide: Portal iFAMA ", url: "https://drive.google.com/file/d/11ZNWxDBS3kR1WKH7y_hCdYw94YpwlCKP/preview", type: "slide" },
+    { id: 20, title: "Slide: Paparan iFAMA ", url: "https://drive.google.com/file/d/1VJm3H7BUUrKGRH1OOhHGpGp_4ooFOQ2Z/preview", type: "slide" },
   ];
 
   // 2. Filter item kosong secara automatik
