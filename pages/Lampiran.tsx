@@ -4,7 +4,7 @@ import { PageHeader } from "../components/PageHeader";
 export const Lampiran = () => {
   // 1. Data Definition
   const rawDocuments = [
-    { id: 1, title: "Dashboard Kehadiran Peserta", url: "Maaf. Sistem Dashboard Sedang Dikemaskini", type: "dashboard" },
+    { id: 1, title: "Dashboard Kehadiran Peserta", url: "https://dashboard.kf26.my/", type: "dashboard" },
     { id: 2, title: "Senarai Nama Peserta Konvensyen FAMA 2026", url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRacZCWatHXE48t5WIRL8w4Vn92rwY_DRNogQtRXAmzjRoZVwP7uZpAmdAfiz4_0e9mthsRnSw3idrW/pubhtml?gid=1920558370&single=true", type: "sheet" },
     { id: 3,title: "SLIDE KP - KONVENSYEN FAMA 2026 ", url: "https://drive.google.com/file/d/1rqSzn3FbPULsR9ucrBaGyTa4O-dokbLP/preview", type: "slide" },
     { id: 4, title: "TOR  : Terma Rujukan Projek Pembangunan RMK-13 ", url: "https://drive.google.com/file/d/17kjDGl6p5npauIpRqHjfX0j-P0L1tDch/view?usp=sharing", type: "slide" },
@@ -24,6 +24,8 @@ export const Lampiran = () => {
     { id: 18, title: "Pitching 4 : Rejuvenasi Outlet Pemasaran", url: "https://drive.google.com/file/d/1ZQBIdwnC-q_GZih4E9jQpk2hdrvsMbt0/preview", type: "slide" },
     { id: 19, title: "Slide: Portal iFAMA ", url: "https://drive.google.com/file/d/11ZNWxDBS3kR1WKH7y_hCdYw94YpwlCKP/preview", type: "slide" },
     { id: 20, title: "Slide: Paparan iFAMA ", url: "https://drive.google.com/file/d/1VJm3H7BUUrKGRH1OOhHGpGp_4ooFOQ2Z/preview", type: "slide" },
+    { id: 21, title: "Slide: Sesi Diaolog Awam Bersama TKP", url: "https://drive.google.com/file/d/1Z7iFcr-odRJGjdX0y91CpeEFJIcz-387/preview", type: "slide" },
+    { id: 22, title: "Resolusi Konvensyen 2026", url: "https://drive.google.com/file/d/10x8FMlbvcNdMiY61od0fyTl10oZKHjTX/preview", type: "slide" },
   ];
 
   // 2. Filter item kosong secara automatik
