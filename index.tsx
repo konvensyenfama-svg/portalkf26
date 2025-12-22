@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { Navbar } from "./components/Navbar";
@@ -12,22 +11,19 @@ import { Register } from "./pages/Register";
 import { Admin } from "./pages/Admin";
 import { Lampiran } from "./pages/Lampiran";
 
+// 1. TAMBAH IMPORT INI
+import { Maklumbalas } from "./pages/Maklumbalas";
+
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
-  const [registrations, setRegistrations] = useState([]); // State to store registration data
+  const [registrations, setRegistrations] = useState([]); 
   
-  // Centralized Configuration State (modifiable by Admin)
   const [config, setConfig] = useState({
-      targetDate: "2025-12-14T15:00:00", // Default Date: 14 Dec 2025, 3pm
+      targetDate: "2025-12-14T15:00:00", 
       location: "ILF Port Dickson",
       dateRange: "14 - 17 Disember 2025"
   });
 
-  // GOOGLE APPS SCRIPT URL for Excel Database
-  // Replace this with your deployed Web App URL
-  const GOOGLE_APPS_SCRIPT_URL: string = "https://script.google.com/macros/s/AKfycbyu03-c40tqK2j8D4p_L9C-lT4zJb5j9tW0x_E_R7z_xH-k_R9_g0_l3_j5_n4_m2_o/exec"; // Placeholder, user needs to update this
-
-  // Scroll to top on page change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
@@ -45,18 +41,17 @@ const App = () => {
             <InfoGrid config={config} />
           </>
         );
-      case 'about':
-        return <About />;
-      case 'agenda':
-        return <Agenda />;
-      case 'exhibitor':
-        return <Exhibitor />;
-      case 'lampiran':
-        return <Lampiran />;
-      case 'register':
-        return <Register onRegister={handleRegistration} />;
-      case 'admin':
-        return <Admin config={config} updateConfig={setConfig} registrations={registrations} />;
+      case 'about': return <About />;
+      case 'agenda': return <Agenda />;
+      case 'exhibitor': return <Exhibitor />;
+      case 'lampiran': return <Lampiran />;
+      case 'register': return <Register onRegister={handleRegistration} />;
+      case 'admin': return <Admin config={config} updateConfig={setConfig} registrations={registrations} />;
+      
+      // 2. TAMBAH CASE INI
+      case 'maklumbalas': 
+        return <Maklumbalas />;
+        
       default:
         return <Hero onNavigate={setCurrentPage} config={config} />;
     }
@@ -65,7 +60,7 @@ const App = () => {
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-800">
       <Navbar onNavigate={setCurrentPage} currentPage={currentPage} />
-      <main className="flex-grow">
+      <main className="flex-grow pt-20"> {/* Tambah padding-top supaya tak kena tutup dengan navbar */}
         {renderPage()}
       </main>
       <Footer onNavigate={setCurrentPage} />
