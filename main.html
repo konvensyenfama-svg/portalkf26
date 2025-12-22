@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Konvensyen FAMA 2026</title>
+  
+  <script>
+    // Security check: Pastikan user tidak "melompat" masuk tanpa login
+    if (!localStorage.getItem('fama_session')) {
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/4/4b/FAMA_logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            fama: { red: '#ED1C24', blue: '#0054A6', dark: '#1F2937', light: '#F3F4F6', green: '#28a745' }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* CSS UNTUK LAYOUT BERSIH */
+    body { 
+        font-family: 'Inter', sans-serif; 
+        margin: 0; 
+        padding: 0; 
+        background-color: #F3F4F6; /* Warna kelabu lembut (fama-light) */
+    }
+    
+    html { scroll-behavior: smooth; }
+
+    #welcome-popup { transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+
+    /* Root container tetap pada kedudukan asal */
+    #root {
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body class="text-gray-800 antialiased">
+
+  <div id="welcome-popup" class="fixed -top-20 left-1/2 -translate-x-1/2 z-[9999] bg-fama-green text-white px-8 py-4 rounded-b-2xl shadow-2xl flex items-center space-x-3">
+    <i class="fas fa-user-circle text-xl"></i>
+    <span class="font-semibold text-sm md:text-base">
+        Selamat Datang, <span id="staff-name" class="uppercase"></span> ke Portal Konvensyen FAMA 2026!
+    </span>
+  </div>
+
+  <button onclick="handleLogout()" class="fixed bottom-5 right-5 z-[50] bg-fama-red text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center group">
+    <i class="fas fa-sign-out-alt"></i>
+    <span class="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-2 transition-all duration-300 text-xs font-bold uppercase">Logout</span>
+  </button>
+
+  <div id="root"></div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const nama = localStorage.getItem('fama_nama');
+      const popup = document.getElementById('welcome-popup');
+      const nameSpan = document.getElementById('staff-name');
+
+      if (nama) {
+        nameSpan.innerText = nama;
+        setTimeout(() => { popup.classList.replace('-top-20', 'top-0'); }, 1000);
+        setTimeout(() => { popup.classList.replace('top-0', '-top-20'); }, 7000);
+      }
+    });
+
+    function handleLogout() {
+      if(confirm("Adakah anda pasti untuk log keluar?")) {
+        localStorage.clear();
+        window.location.href = "index.html";
+      }
+    }
+  </script>
+
+  <script type="module" src="./index.tsx"></script>
+
+</body>
+</html>
