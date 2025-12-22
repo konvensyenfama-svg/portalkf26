@@ -1,56 +1,205 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MJKJD8XJZ8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akses Portal Konvensyen FAMA 2026</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    gtag('config', 'G-MJKJD8XJZ8');
-  </script>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Konvensyen FAMA Tahun 2026</title>
-  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/4/4b/FAMA_logo.png" type="image/png">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            fama: {
-              red: '#ED1C24',
-              blue: '#0054A6',
-              dark: '#1F2937',
-              light: '#F3F4F6',
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          }
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        /* 1. BODY MESTI TRANSPARENT */
+        body, html { 
+            height: 100%; 
+            background-color: transparent !important; 
         }
-      }
-    }
-  </script>
-  
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    html { scroll-behavior: smooth; }
-  </style>
-  
-  <link rel="stylesheet" href="/index.css">
-</head>
 
-<body class="bg-gray-50 text-gray-800 antialiased">
-  <div id="root"></div>
-  <script type="module" src="./index.tsx"></script>
+        /* 2. SETTING VIDEO (Ikut sebiji macam main.html sebelum ni) */
+        #bg-video { 
+            position: fixed; 
+            top: 0;
+            left: 0;
+            min-width: 100%; 
+            min-height: 100%; 
+            width: auto;
+            height: auto;
+            z-index: -10; /* Paling belakang */
+            object-fit: cover; 
+            filter: brightness(40%); /* Gelapkan sikit supaya borang login nampak jelas */
+        }
+
+        .container { 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative;
+            z-index: 10; /* Atas video */
+        }
+        
+        .login-card { 
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(15px); 
+            padding: 40px; 
+            border-radius: 24px; 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            width: 90%; 
+            max-width: 400px; 
+            text-align: center; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        header img { width: 140px; margin-bottom: 15px; }
+        header h1 { font-size: 1.5rem; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px; }
+
+        .input-group { margin-bottom: 20px; text-align: left; position: relative; }
+        .input-group label { display: block; margin-bottom: 8px; font-size: 0.8rem; color: #ddd; text-transform: uppercase; font-weight: 600; }
+        
+        input { 
+            width: 100%; 
+            padding: 14px 15px; 
+            border: none; 
+            border-radius: 12px; 
+            background: rgba(255, 255, 255, 0.9); 
+            font-size: 1rem; 
+            outline: none; 
+            color: #111; 
+        }
+
+        .toggle-password { 
+            position: absolute; 
+            right: 15px; 
+            top: 38px; 
+            color: #444; 
+            cursor: pointer; 
+        }
+
+        .btn-login { 
+            width: 100%; 
+            padding: 16px; 
+            border: none; 
+            border-radius: 12px; 
+            background: #28a745; 
+            color: white; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            text-transform: uppercase;
+        }
+
+        .btn-login:hover { background: #218838; transform: translateY(-2px); }
+
+        #error-msg { 
+            color: #ff8c8c; 
+            background: rgba(255, 0, 0, 0.15); 
+            padding: 10px; 
+            border-radius: 8px; 
+            margin-top: 15px; 
+            font-size: 0.85rem; 
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="/assets/fama_background.mp4" type="video/mp4">
+    </video>
+
+    <div class="container">
+        <div class="login-card">
+            <header>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/FAMA_logo.png" alt="Logo FAMA">
+                <h1>Konvensyen 2026</h1>
+            </header>
+            
+            <div class="input-group">
+                <label>No. Pekerja (ID)</label>
+                <input type="text" id="username" placeholder="Cth: P2280 atau 2280">
+            </div>
+
+            <div class="input-group">
+                <label>No. Kad Pengenalan</label>
+                <input type="password" id="password" placeholder="Tanpa tanda -">
+                <i class="fas fa-eye toggle-password" id="eyeIcon"></i>
+            </div>
+
+            <button class="btn-login" id="loginBtn">Masuk Portal</button>
+            <div id="error-msg"></div>
+        </div>
+    </div>
+
+    <script>
+        const _supabaseUrl = 'https://dauegzprzhawsivykuaq.supabase.co';
+        const _supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRhdWVnenByemhhd3NpdnlrdWFxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5OTE2NzUsImV4cCI6MjA3OTU2NzY3NX0.PwQp4Jzk09bxgQKFPOAf00t7XAsP4f08elxAb8NV6Pk';
+        
+        const famaDb = supabase.createClient(_supabaseUrl, _supabaseKey);
+
+        const eyeIcon = document.getElementById('eyeIcon');
+        const passInput = document.getElementById('password');
+
+        eyeIcon.addEventListener('click', function() {
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                this.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passInput.type = 'password';
+                this.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+
+        document.getElementById('loginBtn').addEventListener('click', async function() {
+            let userNo = document.getElementById('username').value.trim().toUpperCase();
+            let passNo = document.getElementById('password').value.trim();
+            const errorMsg = document.getElementById('error-msg');
+
+            if (userNo && !userNo.startsWith('P') && !isNaN(userNo.charAt(0))) {
+                userNo = 'P' + userNo;
+            }
+
+            passNo = passNo.replace(/-/g, ""); 
+
+            if (!userNo || !passNo) {
+                showError("Sila masukkan ID dan IC.");
+                return;
+            }
+
+            this.innerText = "MENYEMAK...";
+            this.disabled = true;
+
+            try {
+                const { data, error } = await famaDb
+                    .from('staf_fama') 
+                    .select('no_id, ic, nama')
+                    .eq('no_id', userNo)
+                    .eq('ic', passNo)
+                    .maybeSingle();
+
+                if (data) {
+                    localStorage.setItem('fama_session', data.no_id);
+                    localStorage.setItem('fama_nama', data.nama);
+                    window.location.href = "main.html"; 
+                } else {
+                    showError("ID atau IC tidak padan.");
+                    this.innerText = "MASUK PORTAL";
+                    this.disabled = false;
+                }
+            } catch (err) {
+                showError("Masalah sambungan.");
+                this.innerText = "MASUK PORTAL";
+                this.disabled = false;
+            }
+        });
+
+        function showError(msg) {
+            const errorMsg = document.getElementById('error-msg');
+            errorMsg.innerText = msg;
+            errorMsg.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
