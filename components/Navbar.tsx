@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 
 export const Navbar = ({ onNavigate, currentPage }) => {
@@ -13,12 +12,14 @@ export const Navbar = ({ onNavigate, currentPage }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // TAMBAH 'Maklumbalas' DALAM ARRAY INI
   const navLinks = [
     { name: "Utama", id: "home" },
     { name: "Objektif", id: "about" },
     { name: "Tentatif", id: "agenda" },
     { name: "Pameran", id: "exhibitor" },
     { name: "Lampiran", id: "lampiran" },
+    { name: "Maklumbalas", id: "maklumbalas" }, // <-- Link baru ditambah di sini
     { name: "Admin", id: "admin" },
   ];
 
@@ -36,11 +37,9 @@ export const Navbar = ({ onNavigate, currentPage }) => {
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
         {/* Logo Section */}
         <div className="flex items-center gap-4 cursor-pointer" onClick={() => handleNavClick('home')}>
-          {/* Logo 1: Jata Negara */}
           <div className="h-16 w-auto flex items-center justify-center">
              <img src="https://i.imgur.com/YIyHLEx.png" alt="Jata Negara" className="h-16 w-auto object-contain drop-shadow-sm" />
           </div>
-           {/* Logo 2: FAMA */}
           <div className="h-14 w-auto flex items-center">
              <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/FAMA_logo.png" alt="FAMA Logo" className="h-14 w-auto object-contain" />
           </div>
